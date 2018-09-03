@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.task-list--uncompleted{
+			color: red
+		};
+		.task-list--completed{
+			color: yellow
+		};
+	</style>
+</head>
+<body>
+	<ul class="task-list"></ul>
+<script>
+	const tasks = [
+	{
+		title: 'Learn JS',
+		completed: true
+	},
+	{
+		title: 'Learn React',
+		completed: true
+	},
+	{
+		title: 'Learn Angular',
+		completed: true
+	}
+	]
+	const list = document.querySelector('.task-list');
+	list.classList.add(tasks.some(el => el.completed === false) ? 'task-list--uncompleted' : 'task-list--completed')
+	list.innerHTML = tasks.map(el => el.completed  ? `<s>${el.title}</s>` : el.title)
+						  .map(el => `<li>${el}</li>`).join('')
+	//
+	function addTask(title){
+		if(tasks.some(tasks => tasks.title === title)) return
+		tasks.push({title: title, completed: false})
+	}
+	addTask('Learn AngularJS');
+	console.log(tasks)
+</script>
+</body>
+</html>
